@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-const StateCard = () => {
+const StateCard = ({ state }) => {
 	const [isPressed, setIsPressed] = useState(false);
 	return (
 		<View>
 			<TouchableOpacity
-				style={styles.card}
 				onPress={() => {
 					setIsPressed(!isPressed);
 				}}
+				style={[styles.card, isPressed && styles.cardPressed]}
 			>
-				<Text>TEST</Text>
+				<Text>{state.name}</Text>
 			</TouchableOpacity>
 		</View>
 	);
@@ -18,8 +18,16 @@ const StateCard = () => {
 export default StateCard;
 const styles = StyleSheet.create({
 	card: {
-		margin: 15,
+		backgroundColor: "#fff",
 		padding: 25,
-		backgroundColor: "#000",
+		borderRadius: 10,
+		shadowColor: "black",
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.15,
+		shadowRadius: 5,
+		margin: 10,
+	},
+	cardPressed: {
+		backgroundColor: "rgb(232,232, 230)",
 	},
 });
